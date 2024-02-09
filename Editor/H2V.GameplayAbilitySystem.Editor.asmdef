@@ -1,0 +1,19 @@
+{
+    "name": "H2V.GameplayAbilitySystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1d5877897b5bdb64293a75bc1739e6a6",
+        "GUID:201e86ec2a123f748993f80c35008d89"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
