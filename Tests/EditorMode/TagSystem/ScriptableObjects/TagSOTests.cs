@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEngine;
 using H2V.ExtensionsCore.Editor.Helpers;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
+using UnityEngine.TestTools;
 
 namespace H2V.GameplayAbilitySystem.Tests.TagSystem.ScriptableObjects
 {
@@ -44,6 +45,37 @@ namespace H2V.GameplayAbilitySystem.Tests.TagSystem.ScriptableObjects
         public void IsGrandChildTag_Depth_2_True()
         {
             Assert.IsTrue(_grandChildTag.IsChildTag(_tag, 2));
+        }
+
+        [Test]
+        public void SetSelfParent_Valdated_ParentNull()
+        {
+            LogAssert.ignoreFailingMessages = true;
+            _childTag.SetPrivateProperty("_parent", _childTag);
+            Assert.IsNull(_childTag.Parent);
+        }
+
+        [Test]
+        public void SetLoopParent_Valdated_ParentNull()
+        {
+            LogAssert.ignoreFailingMessages = true;
+            _tag.SetPrivateProperty("_parent", _grandChildTag);
+            Assert.IsNull(_tag.Parent);
+        }
+
+        [Test]
+        public void SetMaxDepthParent_Valdated_ParentNull()
+        {
+            LogAssert.ignoreFailingMessages = true;
+            var rootTag = ScriptableObject.CreateInstance<TagSO>();
+            for (int i = 0; i < TagSystemConfig.MaxDepth + 1; i++)
+            {
+                var childTag = ScriptableObject.CreateInstance<TagSO>();
+                childTag.SetPrivateProperty("_parent", rootTag);
+                rootTag = childTag;
+            }
+            LogAssert.ignoreFailingMessages = true;
+            Assert.IsNull(rootTag.Parent);
         }
     }
 }

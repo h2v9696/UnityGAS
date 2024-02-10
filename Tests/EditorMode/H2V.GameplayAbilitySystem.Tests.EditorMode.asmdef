@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "H2V.ExtensionsCore.Editor",
-        "H2V.GameplayAbilitySystem"
+        "H2V.GameplayAbilitySystem",
+        "H2V.GameplayAbilitySystem.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

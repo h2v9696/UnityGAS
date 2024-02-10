@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
@@ -37,8 +35,7 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
             return false;
         }
 
-        // TODO: Expose this in editor so user can change max depth
-        private const int MAX_DEPTH = 10;
+#if UNITY_EDITOR
         private void OnValidate()
         {
             ValidateSelfParent();
@@ -55,7 +52,7 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
 
         private void ValidateCircular()
         {
-            if (_parent == null || !_parent.IsChildTag(this, MAX_DEPTH)) return;
+            if (_parent == null || !_parent.IsChildTag(this, TagSystemConfig.MaxDepth)) return;
             string errorLog = "Circular reference detected:\n";
 
             var child = _parent;
@@ -76,13 +73,14 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
             {
                 parent = parent.Parent;
                 depth++;
-                if (depth > MAX_DEPTH)
+                if (depth > TagSystemConfig.MaxDepth)
                 {
-                    Debug.LogError($"Tag has too many parents. Max depth reached: {MAX_DEPTH}", this);
+                    Debug.LogError($"Tag has too many parents. Max depth reached: {TagSystemConfig.MaxDepth}", this);
                     _parent = null;
                     break;
                 }
             }
         }
+#endif
     }
 }
