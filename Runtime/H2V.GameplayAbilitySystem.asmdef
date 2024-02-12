@@ -1,7 +1,10 @@
 {
     "name": "H2V.GameplayAbilitySystem",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:2f65b432db5d25c43977927c2ba8960e",
+        "GUID:49b49c76ee64f6b41bf28ef951cb0e50"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

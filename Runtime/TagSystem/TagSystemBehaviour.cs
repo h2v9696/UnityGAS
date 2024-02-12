@@ -7,7 +7,7 @@ namespace H2V.GameplayAbilitySystem.TagSystem
     /// <summary>
     /// Manager what tags this game objects holding.
     /// </summary>
-    public class TagSystemComponent : MonoBehaviour
+    public class TagSystemBehaviour : MonoBehaviour
     {
         public delegate void TagEvent(params TagSO[] tag);
         public event TagEvent TagAdded;
