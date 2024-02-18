@@ -27,7 +27,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Additive = 1 },
                         ModifierType = EModifierType.External
@@ -41,7 +41,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Multiplicative = 1 },
                         ModifierType = EModifierType.External
@@ -55,7 +55,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Overriding = 10 },
                         ModifierType = EModifierType.External
@@ -70,7 +70,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Additive = 1, Multiplicative = 1 },
                         ModifierType = EModifierType.External
@@ -84,7 +84,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Additive = 1, Multiplicative = 1, Overriding = 10 },
                         ModifierType = EModifierType.External
@@ -99,12 +99,12 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
                 BaseValue = 1,
                 Modifiers = new EffectModifier[]
                 {
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Overriding = 5 },
                         ModifierType = EModifierType.External
                     },
-                    new EffectModifier()
+                    new()
                     {
                         Modifier = new Modifier() { Overriding = 10 },
                         ModifierType = EModifierType.Core

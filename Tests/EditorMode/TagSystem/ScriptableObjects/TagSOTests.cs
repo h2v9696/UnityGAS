@@ -26,25 +26,25 @@ namespace H2V.GameplayAbilitySystem.Tests.TagSystem.ScriptableObjects
         [Test]
         public void IsChildTag_True()
         {
-            Assert.IsTrue(_childTag.IsChildTag(_tag));
+            Assert.IsTrue(_childTag.IsChildOf(_tag));
         }
 
         [Test]
         public void IsChildTag_SameTag_False()
         {
-            Assert.IsFalse(_tag.IsChildTag(_tag));
+            Assert.IsFalse(_tag.IsChildOf(_tag));
         }
 
         [Test]
         public void IsGrandChildTag_Depth_1_False()
         {
-            Assert.IsFalse(_grandChildTag.IsChildTag(_tag, 1));
+            Assert.IsFalse(_grandChildTag.IsChildOf(_tag, 1));
         }
 
         [Test]
         public void IsGrandChildTag_Depth_2_True()
         {
-            Assert.IsTrue(_grandChildTag.IsChildTag(_tag, 2));
+            Assert.IsTrue(_grandChildTag.IsChildOf(_tag, 2));
         }
 
         [Test]

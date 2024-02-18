@@ -16,18 +16,18 @@ namespace H2V.GameplayAbilitySystem.TagSystem
         [field: SerializeField] public List<TagSO> DefaultTags { get; private set; } = new();
         [field: SerializeField] public List<TagSO> GrantedTags { get; private set; } = new();
 
-        protected virtual void Awake()
+        private void Awake()
         {
             GrantedTags.AddRange(DefaultTags);
         }
 
-        public virtual void AddTags(params TagSO[] tags)
+        public void AddTags(params TagSO[] tags)
         {
             GrantedTags.AddRange(tags);
             TagAdded?.Invoke(tags);
         }
 
-        public virtual void RemoveTags(params TagSO[] tags)
+        public void RemoveTags(params TagSO[] tags)
         {
             foreach (var tag in tags)
             {
@@ -36,9 +36,41 @@ namespace H2V.GameplayAbilitySystem.TagSystem
             }
         }
 
-        public virtual bool HasTag(TagSO tagToCheck)
+        /// <summary>
+        /// Check if system contains this tag, or contains parent of this tag.
+        /// Default depth is 3. Increase depth to check more parent tags.
+        /// </summary>
+        /// <param name="tagToCheck"></param>
+        /// <returns></returns>
+        public bool HasTag(TagSO tagToCheck, int depth = 3)
         {
-            return GrantedTags.Contains(tagToCheck);
+            foreach (var tag in GrantedTags)
+            {
+                if (tag == tagToCheck) return true;
+                if (tag.IsChildOf(tagToCheck, depth)) return true;
+            }
+
+            return false;
+        }
+
+        public bool HasAnyTag(TagSO[] tagsToCheck, int depth = 3)
+        {
+            foreach (var tag in tagsToCheck)
+            {
+                if (HasTag(tag, depth)) return true;
+            }
+
+            return false;
+        }
+
+        public bool HasAllTags(TagSO[] tagsToCheck, int depth = 3)
+        {
+            foreach (var tag in tagsToCheck)
+            {
+                if (!HasTag(tag, depth)) return false;
+            }
+
+            return true;
         }
     }
 }

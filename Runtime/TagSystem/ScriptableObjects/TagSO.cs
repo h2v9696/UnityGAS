@@ -15,7 +15,7 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
         /// <param name="otherTag">Parent/Ancestor tag to compare with</param>
         /// <param name="depthSearch">depth limit to search, increase this if needed for more complex system</param>
         /// <returns>True if this tag is a child/descendant of the other tag</returns>
-        public bool IsChildTag(TagSO otherTag, int depthSearch = 3)
+        public bool IsChildOf(TagSO otherTag, int depthSearch = 3)
         {
             var currentParent = _parent;
             while (depthSearch >=  0)
@@ -52,7 +52,7 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
 
         private void ValidateCircular()
         {
-            if (_parent == null || !_parent.IsChildTag(this, TagSystemConfig.MaxDepth)) return;
+            if (_parent == null || !_parent.IsChildOf(this, TagSystemConfig.MaxDepth)) return;
             string errorLog = "Circular reference detected:\n";
 
             var child = _parent;
