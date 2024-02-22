@@ -10,14 +10,19 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
         [SerializeField] private int _maxDepth = 10;
         public static int MaxDepth;
 
-        private void OnEnable()
+        public void Init()
         {
             MaxDepth = _maxDepth;
         }
 
+        private void OnEnable()
+        {
+            Init();
+        }
+
         private void OnValidate()
         {
-            MaxDepth = _maxDepth;
+            Init();
         }
     }
 }

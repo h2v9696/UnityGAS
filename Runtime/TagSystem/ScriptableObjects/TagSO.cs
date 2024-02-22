@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
 namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
 {   
@@ -38,6 +41,17 @@ namespace H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            var tagConfigPath = AssetDatabase.FindAssets("t:TagSystemConfig");
+            if (tagConfigPath.Length == 0) return;
+            var config = AssetDatabase.LoadAssetAtPath<TagSystemConfig>(
+                AssetDatabase.GUIDToAssetPath(tagConfigPath[0]));
+            if (config == null)
+            {
+                Debug.LogWarning($"TagConfig not found! Please create one in Tag Browser.");
+                return;
+            }
+            config.Init();
+
             ValidateSelfParent();
             ValidateCircular();
             ValidateMaxDepth();
