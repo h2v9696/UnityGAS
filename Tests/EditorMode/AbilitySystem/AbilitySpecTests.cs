@@ -1,11 +1,10 @@
 using NUnit.Framework;
 using UnityEngine;
 using H2V.GameplayAbilitySystem.AbilitySystem.Components;
-using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
 using UnityEditor;
 using H2V.ExtensionsCore.Editor.Helpers;
-using System.Linq;
+using H2V.GameplayAbilitySystem.AbilitySystem;
 
 namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 {
@@ -59,7 +58,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
         {
             var abilitySpec = _abilitySystem.GiveAbility<TestAbilitySpec>(_testAbility);
 
-            Assert.AreEqual(_testAbility, abilitySpec.Ability);
+            Assert.AreEqual(_testAbility, abilitySpec.AbilityDef);
             Assert.AreEqual(_abilitySystem, abilitySpec.Owner);
             Assert.AreEqual(_abilitySystem, abilitySpec.Source);
             Assert.AreEqual(0, abilitySpec.Targets.Count);
@@ -88,7 +87,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
             Assert.IsFalse(abilitySpec.CanActiveAbility());
 
             _abilitySystem.gameObject.SetActive(true);
-            GameObject.Destroy(_abilitySystem.gameObject);
+            GameObject.DestroyImmediate(_abilitySystem.gameObject);
             Assert.IsFalse(abilitySpec.CanActiveAbility());
         }
 

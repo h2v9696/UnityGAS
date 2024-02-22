@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using H2V.GameplayAbilitySystem.AbilitySystem.Components;
+using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
 
 namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 {
@@ -10,6 +11,7 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
         private TestAbility _testAbility;
         private TestAbility _testAbility2;
 
+        private AbilitySO _testAbilitySO;
 
         [SetUp]
         public void SetUp()
@@ -18,16 +20,16 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
             _abilitySystem = go.AddComponent<AbilitySystemBehaviour>();
             _testAbility = ScriptableObject.CreateInstance<TestAbility>();
             _testAbility2 = ScriptableObject.CreateInstance<TestAbility>();
+            _testAbilitySO = _testAbility;
         }
-
         
         [Test]
         public void GiveAbility_AbilityCorrectlyAdded_NoDuplicates()
         {
 
-            var ability = _abilitySystem.GiveAbility<TestAbilitySpec>(_testAbility);
+            var ability = _abilitySystem.GiveAbility(_testAbilitySO);
 
-            Assert.AreEqual(_testAbility, ability.Ability);
+            Assert.AreEqual(_testAbility, ability.AbilityDef);
             Assert.AreEqual(1, _abilitySystem.GrantedAbilities.Count);
             
             var ability2 = _abilitySystem.GiveAbility<TestAbilitySpec>(_testAbility);

@@ -157,17 +157,18 @@ namespace H2V.GameplayAbilitySystem.Tests.AttributeSystem
         }
 
         [Test]
-        public void ResetAttributeModifiers_AllAttributeValuesResetToBase()
+        public void ResetAttributeModifiers_AllAttributeValuesResetToBase(
+            [ValueSource(nameof(_modifierTestCases))] ModifierTestCase testCase)
         {
-            TryAddModifierToAttribute_ValueChanged(_modifierTestCases[0]);
-            TryAddModifierToAttribute_ValueChanged(_modifierTestCases[0]);
+            TryAddModifierToAttribute_ValueChanged(testCase);
+            TryAddModifierToAttribute_ValueChanged(testCase);
 
             _attributeSystem.ResetAttributeModifiers();
             _attributeSystem.UpdateAttributeValues();
 
             foreach (var attributeValue in _attributeSystem.AttributeValues)
             {
-                Assert.AreEqual(2, attributeValue.CurrentValue);
+                Assert.AreEqual(testCase.BaseValue, attributeValue.CurrentValue);
             }
         }
     }

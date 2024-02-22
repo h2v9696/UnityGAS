@@ -1,6 +1,6 @@
 using System;
 
-namespace H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects
+namespace H2V.GameplayAbilitySystem.AbilitySystem
 {
     public interface IAbilityContext
     {

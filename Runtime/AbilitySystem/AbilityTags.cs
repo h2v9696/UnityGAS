@@ -2,7 +2,7 @@ using System;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
 using UnityEngine;
 
-namespace H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects
+namespace H2V.GameplayAbilitySystem.AbilitySystem
 {
     [Serializable]
     public class AbilityTags

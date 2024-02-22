@@ -1,5 +1,5 @@
+using H2V.GameplayAbilitySystem.AbilitySystem;
 using H2V.GameplayAbilitySystem.AbilitySystem.Components;
-using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
 
 namespace H2V.GameplayAbilitySystem.Helper

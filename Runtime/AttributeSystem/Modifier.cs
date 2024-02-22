@@ -26,6 +26,6 @@ namespace H2V.GameplayAbilitySystem.AttributeSystem
         }
 
         public override readonly string ToString()
-            => $"Additive: {Additive}, Multiplicative: {Multiplicative}, Overriding: {Overriding}";
+            => $"Additive: {Additive},\nMultiplicative:\n{Multiplicative},\nOverriding: {Overriding}";
     }
 }

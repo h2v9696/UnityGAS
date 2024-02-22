@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.AbilitySystem
 {
-    public abstract class AbilitySpec
+    public class AbilitySpec
     {
         private bool _isActive;
         public bool IsActive => _isActive;
 
-        private IAbility _ability;
-        public IAbility Ability => _ability;
+        private AbilitySO _abilityDef;
+        public AbilitySO AbilityDef => _abilityDef;
 
         private AbilitySystemBehaviour _owner;
         public AbilitySystemBehaviour Owner => _owner;
@@ -31,10 +31,10 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         /// </summary>
         /// <param name="owner">Owner of this ability</param>
         /// <param name="ability">Ability's data SO</param>
-        public virtual void InitAbility(AbilitySystemBehaviour owner, IAbility ability)
+        public virtual void InitAbility(AbilitySystemBehaviour owner, AbilitySO ability)
         {
             _owner = owner;
-            _ability = ability;
+            _abilityDef = ability;
             Source = owner;
             Targets.Clear();
         }
@@ -47,7 +47,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
 
         public virtual bool TryActiveAbility()
         {
-            if (_ability == null)
+            if (_abilityDef == null)
             {
                 // TODO: Implement log system that can be turn off
                 Debug.LogWarning("GameplayAbilitySpec::TryActiveAbility:: Try to active a Ability with null data");
@@ -57,7 +57,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
             if (_owner == null)
             {
                 Debug.LogWarning($"GameplayAbilitySpec::TryActiveAbility::" +
-                    $" Try to active a Ability [{_ability.Name}] with invalid owner");
+                    $" Try to active a Ability [{_abilityDef.name}] with invalid owner");
                 return false;
             }
 
@@ -81,15 +81,15 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         /// </summary>
         protected virtual bool DoesSystemsSatisfyTagRequirements()
         {
-            return _owner.IsSatisfyTagRequirements(_ability.Tags.OwnerTags) &&
-                Source.IsSatisfyTagRequirements(_ability.Tags.SourceTags);
+            return _owner.IsSatisfyTagRequirements(_abilityDef.Tags.OwnerTags) &&
+                Source.IsSatisfyTagRequirements(_abilityDef.Tags.SourceTags);
         }
         
         protected virtual bool IsPassAllCondition()
         {
-            if (_ability.Conditions.Length <= 0) return true;
+            if (_abilityDef.Conditions.Length <= 0) return true;
             
-            foreach (var condition in _ability.Conditions)
+            foreach (var condition in _abilityDef.Conditions)
             {
                 if (!condition.IsPass(this)) return false;
             }
@@ -100,8 +100,8 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         {
             foreach (var abilitySpec in Owner.GrantedAbilities)
             {
-                var blockTags = abilitySpec.Ability.Tags.BlockAbilityWithTags;
-                if (blockTags.Contains(_ability.Tags.AbilityTag))
+                var blockTags = abilitySpec.AbilityDef.Tags.BlockAbilityWithTags;
+                if (blockTags.Contains(_abilityDef.Tags.AbilityTag))
                     return true;
             }
             return false;
@@ -114,7 +114,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         public void ActivateAbility()
         {
             InternalActiveAbility();
-            _owner.TagSystem.AddTags(_ability.Tags.ActivationTags);
+            _owner.TagSystem.AddTags(_abilityDef.Tags.ActivationTags);
         }
 
         private void InternalActiveAbility()
@@ -129,16 +129,16 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         /// Will be called by <see cref="InternalActiveAbility"/> when the ability is active, 
         /// implement this for custom logic
         /// </summary>
-        protected abstract void OnAbilityActive();
+        protected virtual void OnAbilityActive() { }
 
         private void CancelTargetsAbilities()
         {
             foreach (var target in Targets)
             {
-                var cancelTags = _ability.Tags.CancelAbilityWithTags;
+                var cancelTags = _abilityDef.Tags.CancelAbilityWithTags;
                 foreach (var abilitySpec in target.GrantedAbilities)
                 {
-                    if (cancelTags.Contains(abilitySpec.Ability.Tags.AbilityTag))
+                    if (cancelTags.Contains(abilitySpec.AbilityDef.Tags.AbilityTag))
                         abilitySpec.EndAbility();
                 }
             } 
@@ -148,7 +148,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         {
             Targets.RemoveWhere(target => 
             {
-                if (!target.IsSatisfyTagRequirements(_ability.Tags.TargetTags))
+                if (!target.IsSatisfyTagRequirements(_abilityDef.Tags.TargetTags))
                     return true;
                 return false;
             });
@@ -163,7 +163,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
             if (!_isActive || _owner == null) return;
 
             _isActive = false;
-            _owner.TagSystem.RemoveTags(_ability.Tags.ActivationTags);
+            _owner.TagSystem.RemoveTags(_abilityDef.Tags.ActivationTags);
             Targets.Clear();
             OnAbilityEnded();
         }

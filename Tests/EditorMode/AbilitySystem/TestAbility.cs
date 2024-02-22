@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 {
+    [CreateAssetMenu(menuName = "GameplayAbilitySystem/TestAbility")]
     public class TestAbility : AbilitySO<TestAbilitySpec>
     {
         public int TestParameter = 1;
-        protected override TestAbilitySpec InternalCreateAbility()
+        protected override TestAbilitySpec CreateAbility()
         {
             return new TestAbilitySpec(this);
         }

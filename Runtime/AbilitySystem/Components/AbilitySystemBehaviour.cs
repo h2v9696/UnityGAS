@@ -48,7 +48,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
                 var abilitySpec = _grantedAbilities[index];
                 // Since I asure that the type of ability is the same as the type of abilitySO
                 // It is pretty safe to cast it to T
-                if (abilitySpec.Ability == ability) return (T) abilitySpec;
+                if (abilitySpec.AbilityDef == ability) return (T) abilitySpec;
             }
 
             var grantedAbility = ability.CreateAbilitySpec(this);
@@ -59,18 +59,20 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
             return grantedAbility;
         }
 
+        public AbilitySpec GiveAbility(AbilitySO abilitySO) => GiveAbility<AbilitySpec>(abilitySO);
+
         private void OnGrantedAbility(AbilitySpec abilitySpec)
         {
-            if (abilitySpec.Ability == null) return;
+            if (abilitySpec.AbilityDef == null) return;
             Debug.Log(
-                $"AbilitySystemBehaviour::OnGrantedAbility {abilitySpec.Ability.Name} to {gameObject.name}");
+                $"AbilitySystemBehaviour::OnGrantedAbility {abilitySpec.AbilityDef.name} to {gameObject.name}");
             abilitySpec.OnAbilityGranted(abilitySpec);
             AbilityGrantedEvent?.Invoke(abilitySpec);
         }
 
         public bool TryActiveAbility(AbilitySpec abilitySpec, params AbilitySystemBehaviour[] targets)
         {
-            if (abilitySpec.Ability == null) return false;
+            if (abilitySpec.AbilityDef == null) return false;
             foreach (var ability in _grantedAbilities)
             {
                 if (ability != abilitySpec) continue;
@@ -90,12 +92,12 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
             return isRemoved;
         }
 
-        public bool RemoveAbility(IAbility ability)
+        public bool RemoveAbility(AbilitySO ability)
         {
             for (int i = _grantedAbilities.Count - 1; i >= 0; i--)
             {
                 var grantedSpec = _grantedAbilities[i];
-                if (grantedSpec.Ability != ability) continue;
+                if (grantedSpec.AbilityDef != ability) continue;
                 _grantedAbilities.RemoveAt(i);
                 OnRemoveAbility(grantedSpec);
                 return true;
@@ -118,7 +120,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
 
         private void OnRemoveAbility(AbilitySpec abilitySpec)
         {
-            if (abilitySpec.Ability == null) return;
+            if (abilitySpec.AbilityDef == null) return;
 
             abilitySpec.OnAbilityRemoved(abilitySpec);
         }

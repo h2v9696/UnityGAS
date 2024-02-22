@@ -9,7 +9,9 @@
         "H2V.GameplayAbilitySystem.Editor",
         "H2V.ExtensionsCore"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

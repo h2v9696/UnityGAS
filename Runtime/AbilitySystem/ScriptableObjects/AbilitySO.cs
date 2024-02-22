@@ -10,22 +10,8 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects
         T CreateAbilitySpec(AbilitySystemBehaviour owner);
     }
 
-    public interface IAbility 
+    public abstract class AbilitySO : ScriptableObject, IAbilityCreator<AbilitySpec> 
     {
-        string Name { get; }
-        AbilityTags Tags { get; }
-        TContext GetContext<TContext>() where TContext : IAbilityContext;
-        IAbilityCondition[] Conditions { get; }
-    }
-
-    /// <summary>
-    /// Override this to create new ability SO with a new abstract ability
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class AbilitySO<T> : ScriptableObject, IAbility, IAbilityCreator<T> where T : AbilitySpec, new()
-    {
-        public string Name => name;
-
         [field: SerializeField] public AbilityTags Tags { get; private set; } = new();
 
         [Tooltip("Context of ability such as paramaters, effect, etc. Only one of each type is allowed.")]
@@ -41,13 +27,28 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects
             return Contexts.OfType<TContext>().FirstOrDefault();
         }
 
+        public abstract AbilitySpec CreateAbilitySpec(AbilitySystemBehaviour owner);
+    }
+
+    /// <summary>
+    /// Override this to create new ability SO with a new abstract ability
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class AbilitySO<T> : AbilitySO, IAbilityCreator<T> where T : AbilitySpec, new()
+    {
         T IAbilityCreator<T>.CreateAbilitySpec(AbilitySystemBehaviour owner)
+            => InternalCreateAbility(owner);
+
+        public override AbilitySpec CreateAbilitySpec(AbilitySystemBehaviour owner)
+            => InternalCreateAbility(owner);
+
+        protected virtual T InternalCreateAbility(AbilitySystemBehaviour owner)
         {
-            var ability = InternalCreateAbility();
+            var ability = CreateAbility();
             ability.InitAbility(owner, this);
             return ability;
         }
 
-        protected virtual T InternalCreateAbility() => new();
+        protected virtual T CreateAbility() => new();
     }
 }
