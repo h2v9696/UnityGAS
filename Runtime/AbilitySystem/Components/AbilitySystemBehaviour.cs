@@ -48,7 +48,7 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
                 var abilitySpec = _grantedAbilities[index];
                 // Since I asure that the type of ability is the same as the type of abilitySO
                 // It is pretty safe to cast it to T
-                if (abilitySpec.AbilityDef == ability) return (T) abilitySpec;
+                if (abilitySpec.AbilityDef == (AbilitySO) ability) return (T) abilitySpec;
             }
 
             var grantedAbility = ability.CreateAbilitySpec(this);
