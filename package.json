@@ -4,5 +4,9 @@
   "displayName": "Gameplay Ability System",
   "description": "Gameplay Ability System from Unreal to Unity",
   "unity": "2022.3",
-  "unityRelease": "0f1"
+  "unityRelease": "0f1",
+  "dependencies": {
+    "com.mackysoft.serializereference-extensions": "1.1.9",
+    "com.h2v.extensions-core": "0.0.1"
+  }
 }
