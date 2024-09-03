@@ -29,15 +29,11 @@ namespace H2V.GameplayAbilitySystem.Components
 
         private void OnValidate()
         {
+            _componentGetter = this.GetOrAddComponent<CacheableComponentGetter>();
             if (!TagSystem) TagSystem = GetComponent<TagSystemBehaviour>();
             if (!AbilitySystem) AbilitySystem = GetComponent<AbilitySystemBehaviour>();
             if (!AttributeSystem) AttributeSystem = GetComponent<AttributeSystemBehaviour>();
             if (!GameplayEffectSystem) GameplayEffectSystem = GetComponent<EffectSystemBehaviour>();
-        }
-
-        protected virtual void Awake()
-        {
-            _componentGetter = this.GetOrAddComponent<CacheableComponentGetter>();
         }
 
         public virtual void Init()

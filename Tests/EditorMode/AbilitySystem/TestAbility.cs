@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 {
-    [CreateAssetMenu(menuName = "GameplayAbilitySystem/TestAbility")]
+    [CreateAssetMenu(menuName = "H2V/Tests/Gameplay Ability System/Test Ability")]
     public class TestAbility : AbilitySO<TestAbilitySpec>
     {
         public int TestParameter = 1;
