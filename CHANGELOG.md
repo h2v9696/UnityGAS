@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/h2v9696/UnityGAS/compare/v1.0.0...v1.0.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* update script with extension core ([a9c7968](https://github.com/h2v9696/UnityGAS/commit/a9c7968d440b3fc63084c417e221d7db626f1712))
+
 ## 1.0.0 (2024-09-03)
 
 
