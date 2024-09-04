@@ -5,6 +5,7 @@ using H2V.GameplayAbilitySystem.EffectSystem;
 using H2V.GameplayAbilitySystem.EffectSystem.Components;
 using UnityEngine;
 using H2V.GameplayAbilitySystem.TagSystem;
+using H2V.ExtensionsCore.Helper;
 
 namespace H2V.GameplayAbilitySystem.Components
 {
