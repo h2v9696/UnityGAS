@@ -1,6 +1,7 @@
 using System;
 using H2V.GameplayAbilitySystem.Components;
 using H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects;
+using H2V.GameplayAbilitySystem.EffectSystem.EffectConditions;
 using H2V.GameplayAbilitySystem.EffectSystem.GamplayEffectPolicies;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
 using UnityEngine;
@@ -33,8 +34,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
         [field: SerializeField]
         public StackingDetails StackingDetails { get; private set; }
 
-        [Tooltip("Addition effect when this effect is applied on the target")]
-        [field: SerializeReference, SubclassSelector]
+        [field: SerializeReference, SubclassSelector, Tooltip("Addition effect when this effect is applied on the target")]
         public IAdditionApplyEffect[] AdditionApplyEffects { get; private set; } = Array.Empty<IAdditionApplyEffect>();
 
         /// <summary>
@@ -43,8 +43,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
         [field: SerializeField, Tooltip("How the effect being execute with custom logic. Can leave it null.")]
         public EffectExecutionSO[] CustomExecutions { get; private set; } = Array.Empty<EffectExecutionSO>();
 
-        [Tooltip("Custom requirement to know if we can apply effect or not")]
-        [field: SerializeReference, SubclassSelector]
+        [field: SerializeReference, SubclassSelector, Tooltip("Custom requirement to know if we can apply effect or not")]
         public IEffectCondition[] ApplicationConditions { get; private set; } = Array.Empty<IEffectCondition>();
 
         /// <summary>

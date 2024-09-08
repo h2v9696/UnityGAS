@@ -1,4 +1,4 @@
-namespace H2V.GameplayAbilitySystem.EffectSystem
+namespace H2V.GameplayAbilitySystem.EffectSystem.EffectConditions
 {
     // Implement for custom conditions
     public interface IEffectCondition

@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects
 {
+    [Serializable]
     public class GrantAbilityOnApplying : IAdditionApplyEffect
     {
         /// <summary>

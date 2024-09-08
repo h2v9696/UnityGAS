@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects
 {
+    [Serializable]
     public class RemoveOtherEffectOnAppliedByDef : IAdditionApplyEffect
     {
         /// <summary>
         /// GameplayEffects on the Target that have any of these Defs
         /// will be removed from the Target when this GameplayEffect is successfully applied.
         /// </summary>
-        [field: SerializeField]
+        [field: SerializeReference]
         public IGameplayEffectDef[] EffectDefs { get; private set; } = Array.Empty<IGameplayEffectDef>();
 
         public void OnEffectSpecApplied(AbilitySystemComponent target)

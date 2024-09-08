@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using H2V.GameplayAbilitySystem.Components;
 using H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects;
+using H2V.GameplayAbilitySystem.EffectSystem.EffectConditions;
 using H2V.GameplayAbilitySystem.EffectSystem.GamplayEffectPolicies;
 using H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects;
 using H2V.GameplayAbilitySystem.TagSystem.ScriptableObjects;
