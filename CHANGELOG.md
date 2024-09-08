@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/h2v9696/UnityGAS/compare/v1.0.1...v1.0.2) (2024-09-08)
+
+
+### Bug Fixes
+
+* some field not bein selialized ([71def0a](https://github.com/h2v9696/UnityGAS/commit/71def0afcb03530fbd010fa5900a47ca1a32e2f2))
+
 ## [1.0.1](https://github.com/h2v9696/UnityGAS/compare/v1.0.0...v1.0.1) (2024-09-04)
 
 
