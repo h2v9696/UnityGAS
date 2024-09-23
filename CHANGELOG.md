@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/h2v9696/UnityGAS/compare/v1.0.2...v1.0.3) (2024-09-23)
+
+
+### Bug Fixes
+
+* tooltip not working in some class ([c73693a](https://github.com/h2v9696/UnityGAS/commit/c73693a3b9e893d35bb9ad851cd1be743db44846))
+
 ## [1.0.2](https://github.com/h2v9696/UnityGAS/compare/v1.0.1...v1.0.2) (2024-09-08)
 
 
