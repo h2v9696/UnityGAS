@@ -14,13 +14,13 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects
     {
         [field: SerializeField] public AbilityTags Tags { get; private set; } = new();
 
-        [Tooltip("Context of ability such as paramaters, effect, etc. Only one of each type is allowed.")]
-        [field: SerializeReference, SubclassSelector] public IAbilityContext[] Contexts
-        { get; private set; } = Array.Empty<IAbilityContext>();
+        [field: SerializeReference, SubclassSelector,
+        Tooltip("Context of ability such as paramaters, effect, etc. Only one of each type is allowed.")]
+        public IAbilityContext[] Contexts { get; private set; } = Array.Empty<IAbilityContext>();
 
-        [Tooltip("Custom condition to active ability.")]
-        [field: SerializeReference, SubclassSelector] public IAbilityCondition[] Conditions
-        { get; private set; } = Array.Empty<IAbilityCondition>();
+        [field: SerializeReference, SubclassSelector,
+        Tooltip("Custom condition to active ability.")]
+        public IAbilityCondition[] Conditions { get; private set; } = Array.Empty<IAbilityCondition>();
 
         public TContext GetContext<TContext>() where TContext : IAbilityContext
         {

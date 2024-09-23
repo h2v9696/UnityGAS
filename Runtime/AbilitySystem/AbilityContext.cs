@@ -7,7 +7,6 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
         bool IsValid { get; }
     }
 
-    [Serializable]
     public class NullAbilityContext : IAbilityContext
     {
         public static NullAbilityContext Instance { get; } = new NullAbilityContext();

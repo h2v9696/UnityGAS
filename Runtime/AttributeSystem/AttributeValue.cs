@@ -18,10 +18,10 @@ namespace H2V.GameplayAbilitySystem.AttributeSystem
     public struct AttributeValue
     {
         [field: SerializeField] public AttributeSO Attribute { get; set; }
-        [Tooltip("This is permanent value, from stats, gear, etc.")]
-        [field: SerializeField] public float BaseValue { get; set; }
-        [Tooltip("This is temporary value, modify from effects and might be removed")]
-        [field: SerializeField] public float CurrentValue { get; set; }
+        [field: SerializeField, Tooltip("This is permanent value, from stats, gear, etc.")]
+        public float BaseValue { get; set; }
+        [field: SerializeField, Tooltip("This is temporary value, modify from effects and might be removed")]
+        public float CurrentValue { get; set; }
 
         /// <summary>
         /// Sum of all external effects
