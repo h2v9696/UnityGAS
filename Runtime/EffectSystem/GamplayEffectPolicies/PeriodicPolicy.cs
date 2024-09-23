@@ -6,11 +6,11 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.GamplayEffectPolicies
     [Serializable]
     public class PeriodicPolicy : StackPolicy
     {
-        [Tooltip("Duration of the effect")]
-        [field: SerializeField] public int ActiveTimes { get; private set; }
+        [field: SerializeField, Tooltip("Duration of the effect")]
+        public int ActiveTimes { get; private set; }
 
-        [Tooltip("Interval of the effect")]
-        [field: SerializeField] public float Interval { get; private set; }
+        [field: SerializeField, Tooltip("Interval of the effect")]
+        public float Interval { get; private set; }
 
         [field: SerializeField] public bool IsResetOnStackChange { get; private set; }
 

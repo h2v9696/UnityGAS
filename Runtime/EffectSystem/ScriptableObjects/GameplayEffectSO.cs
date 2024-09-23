@@ -16,8 +16,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
         [field: SerializeField, TextArea(0, 3)]
         public string Description { get; private set; }
 
-        [field: SerializeField]
-        [Tooltip("Tag to define this effect")]
+        [field: SerializeField, Tooltip("Tag to define this effect")]
         public TagSO EffectTag { get; private set; }
 
         /// <summary>

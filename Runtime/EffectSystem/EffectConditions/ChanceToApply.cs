@@ -6,8 +6,8 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.EffectConditions
     [Serializable]
     public class ChanceToApply : IEffectCondition
     {
-        [SerializeField, Range(0f, 1f)]
-        [Tooltip("There {ChanceToApply}*100% chance that effect will be applied")]
+        [SerializeField, Range(0f, 1f),
+        Tooltip("There {ChanceToApply}*100% chance that effect will be applied")]
         private float _chance = 1f;
         
         public bool IsPass(GameplayEffectSpec effectSpec)

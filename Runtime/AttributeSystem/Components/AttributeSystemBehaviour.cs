@@ -21,11 +21,11 @@ namespace H2V.GameplayAbilitySystem.AttributeSystem.Components
 
         [SerializeField] private bool _initOnAwake = true;
 
-        [Tooltip("Event for any logic pre and post attribute change")]
-        [SerializeField] private List<AttributesEventBase> _attributeEvents = new();
+        [SerializeField, Tooltip("Event for any logic pre and post attribute change")]
+        private List<AttributesEventBase> _attributeEvents = new();
 
-        [Tooltip("You can add attribute here for default attribute")]
-        [SerializeField] private List<AttributeSO> _attributes = new();
+        [SerializeField, Tooltip("You can add attribute here for default attribute")]
+        private List<AttributeSO> _attributes = new();
         public List<AttributeSO> Attributes => _attributes;
 
         [SerializeField] private List<AttributeValue> _attributeValues = new();
