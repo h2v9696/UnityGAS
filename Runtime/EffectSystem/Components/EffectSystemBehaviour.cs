@@ -199,7 +199,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.Components
             foreach (var executeEvent in _effectExecuteEvents)
             {
                 if (executeEvent == null) continue;
-                executeEvent.PreExecute(executeData);
+                executeEvent.PostExecute(executeData);
             }
         }
     }

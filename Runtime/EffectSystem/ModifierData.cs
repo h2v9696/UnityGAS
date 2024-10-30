@@ -10,7 +10,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
         public float Magnitude;
 
         public ModifierEvaluatedData(AttributeSO attribute, EAttributeModifierOperationType opType,
-            int magnitude)
+            float magnitude)
         {
             Attribute = attribute;
             OpType = opType;

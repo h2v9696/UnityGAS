@@ -28,7 +28,8 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
         /// </summary>
         /// <param name="gameplayEffectSpec">Relevant spec to use to calculate the magnitude with</param>
         /// <param name="evaluatedMagnitude">out calculated value of the magnitude, will be set to 0f if its failed</param>
-        /// <returns>true if the calculation was successful, false if it was not</returns>
+        /// <returns>true if the calculation was successful, false if it was not, 
+        /// in case of false it will set evaluatedMagnitude to 0f</returns>
         public abstract bool TryCalculateMagnitude(GameplayEffectSpec gameplayEffectSpec,
             ref float evaluatedMagnitude);
     }
