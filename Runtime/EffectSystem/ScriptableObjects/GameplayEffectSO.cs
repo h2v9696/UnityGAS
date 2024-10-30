@@ -54,7 +54,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
             GameplayEffectContextHandle context)
         {
             var effect = CreateEffect();
-            effect.Context = context;
+            effect.ContextHandle = context;
             effect.InitEffect(this, ownerSystem);
             return effect;
         }

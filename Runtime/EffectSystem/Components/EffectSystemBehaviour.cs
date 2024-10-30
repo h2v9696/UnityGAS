@@ -53,7 +53,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.Components
             UpdateAttributeSystemModifiers();
 
             var spec = activeEffect.Spec;
-            var instigator = spec.Context.GetContext().InstigatorAbilitySystem;
+            var instigator = spec.ContextHandle.InstigatorAbilitySystem;
             AppliedEffectToSelf?.Invoke(instigator, spec);
 
             if (instigator == null) return;

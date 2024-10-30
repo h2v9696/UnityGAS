@@ -38,7 +38,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
 
         public int StackCount { get; set; }
 
-        public GameplayEffectContextHandle Context { get; set; }
+        public GameplayEffectContextHandle ContextHandle { get; set; }
 
         /// <summary>
         /// Which Data/SO the effect is based on
@@ -68,9 +68,6 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
                 if (modifier.ModifierMagnitude == null) continue;
                 modifier.ModifierMagnitude.Initialize(this);
             }
-
-            CalculateModifierMagnitudes();
-
 
             OnInitEffect(effectDef, source);
         }
@@ -170,7 +167,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
             if (StackingDetails.StackingType == EGameplayEffectStackingType.AggregateByTarget)
                 return true;
 
-            if (Source != null && Source == otherSpec.Context.GetContext().InstigatorAbilitySystem)
+            if (Source != null && Source == otherSpec.ContextHandle.InstigatorAbilitySystem)
                 return true;
 
             return true;

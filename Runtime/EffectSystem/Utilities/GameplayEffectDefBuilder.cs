@@ -105,7 +105,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.Utilities
         {
             var effect = new GameplayEffectSpec
             {
-                Context = context
+                ContextHandle = context
             };
             effect.InitEffect(this, ownerSystem);
             return effect;

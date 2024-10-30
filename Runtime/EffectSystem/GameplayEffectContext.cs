@@ -1,46 +1,60 @@
+using System.Collections.Generic;
+using System.Linq;
 using H2V.GameplayAbilitySystem.Components;
 using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.EffectSystem
 {
+    public interface IEffectContext
+    {
+    }
+
     /// <summary>
     /// Data structure that stores an instigator and related data, such as positions and targets
     /// Games can subclass this structure and add game-specific information
     /// It is passed throughout effect execution so it is a great place to track transient information about an execution
     /// </summary>
-    public class GameplayEffectContext
+    public class GameplayEffectContextHandle
     {
         private AbilitySystemComponent _instigatorAbilitySystem;
         public AbilitySystemComponent InstigatorAbilitySystem => _instigatorAbilitySystem;
+
+        public List<IEffectContext> EffectContexts { get; private set; } = new();
         private GameObject _instigator;
 
-        public bool IsValid() => true;
+
+        public GameplayEffectContextHandle(GameObject instigator, params IEffectContext[] contexts)
+        {
+            AddInstigator(instigator);
+            EffectContexts.AddRange(contexts);
+        }
+
+        public GameplayEffectContextHandle(AbilitySystemComponent asc, params IEffectContext[] contexts)
+        {
+            AddInstigator(asc);
+            EffectContexts.AddRange(contexts);
+        }
+
+        public virtual bool IsValid() => true;
 
         public void AddInstigator(GameObject instigator)
         {
             _instigator = instigator;
             _instigatorAbilitySystem = instigator.GetComponent<AbilitySystemComponent>();
         }
-    }
 
-    /// <summary>
-    /// Handle that wraps a FGameplayEffectContext or subclass, to allow it to be polymorphic and replicate properly
-    ///
-    /// <para>
-    /// I'm not really getting this class... ported from GameplayEffectTypes.h
-    /// maybe for networking and async stuff?
-    /// </para>
-    /// </summary>
-    public class GameplayEffectContextHandle
-    {
-        private readonly GameplayEffectContext _data;
-        public GameplayEffectContext GetContext() => _data;
-
-        public GameplayEffectContextHandle(GameplayEffectContext data)
+        public void AddInstigator(AbilitySystemComponent asc)
         {
-            _data = data;
+            _instigator = asc.gameObject;
+            _instigatorAbilitySystem = asc;
         }
 
-        public bool IsValid() => _data != null;
+        public void AddContext(IEffectContext context)
+        {
+            EffectContexts.Add(context);
+        }
+
+        public T GetContext<T>() where T : IEffectContext
+            => EffectContexts.OfType<T>().FirstOrDefault();
     }
 }
