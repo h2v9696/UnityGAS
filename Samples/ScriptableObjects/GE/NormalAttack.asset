@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffd989f578481342b953360f84c5b93, type: 3}
+  m_Name: NormalAttack
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: 
+  <EffectTag>k__BackingField: {fileID: 0}
+  <Policy>k__BackingField:
+    rid: 5536232888465883136
+  <EffectDetails>k__BackingField:
+    Modifiers:
+    - Attribute: {fileID: 11400000, guid: e4e4056e65f79064e98331e4839c070c, type: 2}
+      OperationType: 0
+      ModifierMagnitude: {fileID: 11400000, guid: 6780c4c7386e55f409c67607cc86cd5e,
+        type: 2}
+      Value: 0
+    StackingType: 1
+  <AdditionApplyEffects>k__BackingField: []
+  <CustomExecutions>k__BackingField: []
+  <ApplicationConditions>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5536232888465883136
+      type: {class: InstantPolicy, ns: H2V.GameplayAbilitySystem.EffectSystem.GamplayEffectPolicies,
+        asm: H2V.GameplayAbilitySystem}
+      data: 

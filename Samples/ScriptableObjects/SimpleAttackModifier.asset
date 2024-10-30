@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b96ad976a4bcc40ae6bf64b95ee5ea, type: 3}
+  m_Name: SimpleAttackModifier
+  m_EditorClassIdentifier: 
+  _attackAttribute: {fileID: 11400000, guid: 894edbae07178a24b973fc5860606fc5, type: 2}
+  _defendAttribute: {fileID: 11400000, guid: 10ea2e0f34aad4d49a84f138914c3e4d, type: 2}
+  _evasionAttribute: {fileID: 11400000, guid: 0973485c986a9b04fbb0ae7993188a6d, type: 2}

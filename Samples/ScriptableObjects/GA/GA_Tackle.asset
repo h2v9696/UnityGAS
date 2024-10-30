@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8629c74a2e5d65745bec53a874e3f201, type: 3}
+  m_Name: GA_Tackle
+  m_EditorClassIdentifier: 
+  <Tags>k__BackingField:
+    AbilityTag: {fileID: 0}
+    CancelAbilityWithTags: []
+    BlockAbilityWithTags: []
+    ActivationTags: []
+    OwnerTags:
+      RequireTags: []
+      IgnoreTags: []
+    SourceTags:
+      RequireTags: []
+      IgnoreTags: []
+    TargetTags:
+      RequireTags: []
+      IgnoreTags: []
+  <Contexts>k__BackingField:
+  - rid: 5536233049161990144
+  <Conditions>k__BackingField: []
+  <Effects>k__BackingField:
+  - {fileID: 11400000, guid: 2d84037b83217bc44bb030c6a921040c, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5536233049161990144
+      type: {class: SampleAbilityContext, ns: H2V.GameplayAbilitySystem.Samples, asm: H2V.GameplayAbilitySystem.Samples}
+      data:
+        <Power>k__BackingField: 40
+        <Accuracy>k__BackingField: 50

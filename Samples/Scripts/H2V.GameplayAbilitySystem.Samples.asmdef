@@ -1,0 +1,25 @@
+{
+    "name": "H2V.GameplayAbilitySystem.Samples",
+    "rootNamespace": "H2V.GameplayAbilitySystem.Samples",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "H2V.ExtensionsCore.Editor",
+        "H2V.GameplayAbilitySystem",
+        "H2V.GameplayAbilitySystem.Editor",
+        "H2V.ExtensionsCore"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
