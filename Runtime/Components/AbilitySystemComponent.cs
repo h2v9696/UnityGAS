@@ -10,7 +10,8 @@ using H2V.ExtensionsCore.Helper;
 namespace H2V.GameplayAbilitySystem.Components
 {
     /// <summary>
-    /// A component to interface with 3 aspects of the AbilitySystem:
+    /// A mediator to communicate and fetch component in the owner
+    /// Eg: Communicate with 3 mains aspects of the AbilitySystem:
     ///
     /// <see cref="AbilitySystemBehaviour"/>
     /// <see cref="EffectSystemBehaviour"/>
@@ -26,21 +27,41 @@ namespace H2V.GameplayAbilitySystem.Components
         [field: SerializeField] public AttributeSystemBehaviour AttributeSystem { get; private set; }
         [field: SerializeField] public EffectSystemBehaviour GameplayEffectSystem { get; private set; }
 
+        [SerializeField] private bool _isInitOnAwake = true;
+
         private CacheableComponentGetter _componentGetter;
 
         private void OnValidate()
         {
+            if (!TagSystem) TagSystem = gameObject.GetComponent<TagSystemBehaviour>();
+            if (!AbilitySystem) AbilitySystem = gameObject.GetComponent<AbilitySystemBehaviour>();
+            if (!AttributeSystem) AttributeSystem = gameObject.GetComponent<AttributeSystemBehaviour>();
+            if (!GameplayEffectSystem) GameplayEffectSystem = gameObject.GetComponent<EffectSystemBehaviour>();
+        }
+
+        protected virtual void Awake()
+        {
             _componentGetter = this.GetOrAddComponent<CacheableComponentGetter>();
-            if (!TagSystem) TagSystem = GetComponent<TagSystemBehaviour>();
-            if (!AbilitySystem) AbilitySystem = GetComponent<AbilitySystemBehaviour>();
-            if (!AttributeSystem) AttributeSystem = GetComponent<AttributeSystemBehaviour>();
-            if (!GameplayEffectSystem) GameplayEffectSystem = GetComponent<EffectSystemBehaviour>();
+            if (_isInitOnAwake)
+            {
+                Init();
+            }
         }
 
         public virtual void Init()
         {
             AttributeSystem.Init();
             GameplayEffectSystem.Owner = this;
+            InitChildComponents();
+        }
+        
+        private void InitChildComponents()
+        {
+            var childComponents = GetComponentsInChildren<IOwnerComponent>();
+            foreach (var childComponent in childComponents)
+            {
+                childComponent.Init(this);
+            }
         }
 
         public new bool TryGetComponent<T>(out T component)
@@ -68,8 +89,7 @@ namespace H2V.GameplayAbilitySystem.Components
 
         public GameplayEffectContextHandle MakeEffectContext()
         {
-            var context = new GameplayEffectContextHandle(new GameplayEffectContext());
-            context.GetContext().AddInstigator(gameObject);
+            var context = new GameplayEffectContextHandle(this);
             return context;
         }
 
@@ -85,7 +105,6 @@ namespace H2V.GameplayAbilitySystem.Components
             if (inSpec == null) return new ActiveGameplayEffect();
 
             inSpec.Target = this;
-
             if (!inSpec.CanApply()) return new ActiveGameplayEffect();
 
             inSpec.CalculateModifierMagnitudes();
@@ -105,6 +124,13 @@ namespace H2V.GameplayAbilitySystem.Components
         {
             var spec = MakeOutgoingSpec(effectDef, context);
             return ApplyEffectToSelf(spec);
+        }
+
+        public ActiveGameplayEffect ApplyEffectToTarget(AbilitySystemComponent target, IGameplayEffectDef effectDef,
+            GameplayEffectContextHandle context = null)
+        {
+            var spec = MakeOutgoingSpec(effectDef, context);
+            return target.ApplyEffectToSelf(spec);
         }
     }
 }

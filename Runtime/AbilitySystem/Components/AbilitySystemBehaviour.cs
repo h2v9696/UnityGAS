@@ -73,15 +73,11 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
         public bool TryActiveAbility(AbilitySpec abilitySpec, params AbilitySystemBehaviour[] targets)
         {
             if (abilitySpec.AbilityDef == null) return false;
-            foreach (var ability in _grantedAbilities)
-            {
-                if (ability != abilitySpec) continue;
-                ability.InitTargets(targets);
-                if (!ability.CanActiveAbility()) continue;
-                ability.ActivateAbility();
-                return true;
-            }
-            return false;
+            if (!_grantedAbilities.Contains(abilitySpec)) return false;
+            abilitySpec.InitTargets(targets);
+            if (!abilitySpec.CanActiveAbility()) return false;
+            abilitySpec.ActivateAbility();
+            return true;
         }
 
         public bool RemoveAbility(AbilitySpec abilitySpec)
