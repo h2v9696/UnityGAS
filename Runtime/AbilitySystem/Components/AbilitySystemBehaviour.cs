@@ -1,27 +1,29 @@
 using System;
 using System.Collections.Generic;
 using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
+using H2V.GameplayAbilitySystem.Components;
 using H2V.GameplayAbilitySystem.TagSystem;
 using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.AbilitySystem.Components
 {
-    [RequireComponent(typeof(TagSystemBehaviour))]
+    [RequireComponent(typeof(AbilitySystemComponent))]
     public partial class AbilitySystemBehaviour : MonoBehaviour
     {
         public delegate void AbilityGranted(AbilitySpec grantedAbility);
 
         public event AbilityGranted AbilityGrantedEvent;
 
-        [SerializeField] private TagSystemBehaviour _tagSystem;
-        public TagSystemBehaviour TagSystem => _tagSystem;
+        [SerializeField] private AbilitySystemComponent _abilitySystemComponent;
+        public AbilitySystemComponent AbilitySystemComponent => _abilitySystemComponent;
+        public TagSystemBehaviour TagSystem => _abilitySystemComponent.TagSystem;
 
         private List<AbilitySpec> _grantedAbilities = new();
         public IReadOnlyList<AbilitySpec> GrantedAbilities => _grantedAbilities;
 
         private void OnValidate()
         {
-            if (!_tagSystem) _tagSystem = GetComponent<TagSystemBehaviour>();
+            if (!_abilitySystemComponent) _abilitySystemComponent = GetComponent<AbilitySystemComponent>();
         }
 
         private void OnDestroy()

@@ -35,6 +35,10 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 
     public class AlwaysFalse : IAbilityCondition
     {
+        public void Initialize(AbilitySpec abilitySpec)
+        {
+        }
+
         public bool IsPass(AbilitySpec abilitySpec)
         {
             return false;

@@ -37,12 +37,21 @@ namespace H2V.GameplayAbilitySystem.AbilitySystem
             _abilityDef = ability;
             Source = owner;
             Targets.Clear();
+            InitConditions();
         }
 
         public virtual void InitTargets(params AbilitySystemBehaviour[] targets)
         {
             Targets.Clear();
             Targets.UnionWith(targets);
+        }
+        
+        private void InitConditions()
+        {
+            foreach (var condition in _abilityDef.Conditions)
+            {
+                condition.Initialize(this);
+            }
         }
 
         public virtual bool TryActiveAbility()
