@@ -27,9 +27,13 @@ MonoBehaviour:
       RequireTags: []
       IgnoreTags: []
   <Contexts>k__BackingField: []
-  <Conditions>k__BackingField: []
+  <Conditions>k__BackingField:
+  - rid: 5536233067879333960
   <Effects>k__BackingField:
   - {fileID: 11400000, guid: 2d84037b83217bc44bb030c6a921040c, type: 2}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5536233067879333960
+      type: {class: AbilityCostCondition, ns: H2V.GameplayAbilitySystem.Samples, asm: H2V.GameplayAbilitySystem.Samples}
+      data: 

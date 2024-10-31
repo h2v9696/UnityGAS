@@ -1,3 +1,4 @@
+using System.Linq;
 using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
 using H2V.GameplayAbilitySystem.AttributeSystem.ScriptableObjects;
 using H2V.GameplayAbilitySystem.Components;
@@ -11,6 +12,7 @@ namespace H2V.GameplayAbilitySystem.Samples
         [SerializeField] private AbilitySystemComponent _target;
         [SerializeField] private AttributeSO _hpAttribute;
         [SerializeField] private AttributeSO _atkAttribute;
+        [SerializeField] private AttributeSO _mpAttribute;
         [SerializeField] private int _windowId;
 
         private const int BUTTONS_PER_ROWS = 2;
@@ -36,7 +38,8 @@ namespace H2V.GameplayAbilitySystem.Samples
             GUILayout.Label($"HP: {currentHp.CurrentValue}", GUILayout.ExpandWidth(true));
             _asc.AttributeSystem.TryGetAttributeValue(_atkAttribute, out var currentAtk);
             GUILayout.Label($"Atk: {currentAtk.CurrentValue}", GUILayout.ExpandWidth(true));
-
+            _asc.AttributeSystem.TryGetAttributeValue(_mpAttribute, out var currentMP);
+            GUILayout.Label($"MP: {currentMP.CurrentValue}", GUILayout.ExpandWidth(true));
             GUILayout.FlexibleSpace(); // Push buttons to the bottom
 
             int rows = Mathf.CeilToInt(AbilityCount / (float)BUTTONS_PER_ROWS);
@@ -54,13 +57,20 @@ namespace H2V.GameplayAbilitySystem.Samples
                     if (buttonIndex < AbilityCount)
                     {
                         var ability = _asc.AbilitySystem.GrantedAbilities[buttonIndex];
-                        var abilityName = ability.AbilityDef.name;
+
+                        var context = ability.AbilityDef.GetContext<SampleAbilityEffectContext>();
+                        var abilityName = $"{ability.AbilityDef.name} : {context.Cost.Value} {context.Cost.Attribute.name}";
+                        var costCondition = ability.AbilityDef.Conditions.OfType<AbilityCostCondition>().FirstOrDefault();
+                        
+                        GUI.enabled = costCondition == null || costCondition.CheckCost();
+
                         if (GUILayout.Button(abilityName, GUILayout.Height(40), GUILayout.ExpandWidth(true)))
                         {
                             Debug.Log($"{gameObject.name} used {abilityName}!");
                             _asc.AbilitySystem.TryActiveAbility(ability, _target.AbilitySystem);
                             ability.EndAbility();
                         }
+                        GUI.enabled = true;
                     }
                 }
 

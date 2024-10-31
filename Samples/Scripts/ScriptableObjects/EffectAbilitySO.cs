@@ -32,26 +32,17 @@ namespace H2V.GameplayAbilitySystem.Samples.ScriptableObjects
 
         protected override void OnAbilityActive()
         {
-            var ownerAsc = Owner.GetComponent<AbilitySystemComponent>();
+            var ownerAsc = Owner.AbilitySystemComponent;
             foreach (var target in Targets)
             {
-                var targetAsc = target.GetComponent<AbilitySystemComponent>();
+                var targetAsc = target.AbilitySystemComponent;
                 foreach (var effect in _def.Effects)
                 {
-                    var context = new GameplayEffectContextHandle(ownerAsc, new EffectAbilityContext(AbilityDef));
+                    var abilityEffectContext = AbilityDef.GetContext<SampleAbilityEffectContext>();
+                    var context = new GameplayEffectContextHandle(ownerAsc, abilityEffectContext);
                     ownerAsc.ApplyEffectToTarget(targetAsc, effect, context);
                 }
             }
-        }
-    }
-
-    public class EffectAbilityContext : IEffectContext
-    {
-        public AbilitySO Ability { get; private set; }
-
-        public EffectAbilityContext(AbilitySO ability)
-        {
-            Ability = ability; 
         }
     }
 }

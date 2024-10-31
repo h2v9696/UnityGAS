@@ -19,19 +19,17 @@ namespace H2V.GameplayAbilitySystem.Samples.ScriptableObjects
 
         public override bool TryCalculateMagnitude(GameplayEffectSpec gameplayEffectSpec, ref float evaluatedMagnitude)
         {
-            var context = gameplayEffectSpec.ContextHandle.GetContext<EffectAbilityContext>();
+            var context = gameplayEffectSpec.ContextHandle.GetContext<SampleAbilityEffectContext>();
             if (context == null) return false;
-            var abilityContext = context.Ability.GetContext<SampleAbilityContext>();
-            if (abilityContext == null) return false;
 
             var sourceAttributeSystem = gameplayEffectSpec.Source.AttributeSystem;
             var targetAttributeSystem = gameplayEffectSpec.Target.AttributeSystem;
             sourceAttributeSystem.TryGetAttributeValue(_attackAttribute, out var ownerAttack);
             targetAttributeSystem.TryGetAttributeValue(_defendAttribute, out var targetDefend);
-            evaluatedMagnitude = -abilityContext.Power * (targetDefend.CurrentValue / ownerAttack.CurrentValue);
+            evaluatedMagnitude = -context.Power * (targetDefend.CurrentValue / ownerAttack.CurrentValue);
             
             targetAttributeSystem.TryGetAttributeValue(_evasionAttribute, out var targetEva);
-            var randomValue = abilityContext.Accuracy * targetEva.CurrentValue;
+            var randomValue = context.Accuracy * targetEva.CurrentValue;
             var isMissed = Random.value > randomValue / 100f;
             if (isMissed)
             {
