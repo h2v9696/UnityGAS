@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultAbilities:
   - {fileID: 11400000, guid: 05df85106f656694b9e1daa3fdaf7b91, type: 2}
+  - {fileID: 11400000, guid: 8ccb5d5e1ea7dd04ea64b8777c418ab8, type: 2}
 --- !u!114 &477675773
 MonoBehaviour:
   m_ObjectHideFlags: 0

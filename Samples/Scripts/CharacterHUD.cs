@@ -59,12 +59,14 @@ namespace H2V.GameplayAbilitySystem.Samples
                         var ability = _asc.AbilitySystem.GrantedAbilities[buttonIndex];
 
                         var context = ability.AbilityDef.GetContext<SampleAbilityEffectContext>();
-                        var abilityName = $"{ability.AbilityDef.name} : {context.Cost.Value} {context.Cost.Attribute.name}";
+                        var abilityName = $"{ability.AbilityDef.name}";
+                        var costText = context?.Cost != null ? $" : {context.Cost.Value} {context.Cost.Attribute.name}" : "";
+                        var abilityNameCost = $"{abilityName}{costText}";
                         var costCondition = ability.AbilityDef.Conditions.OfType<AbilityCostCondition>().FirstOrDefault();
                         
                         GUI.enabled = costCondition == null || costCondition.CheckCost();
 
-                        if (GUILayout.Button(abilityName, GUILayout.Height(40), GUILayout.ExpandWidth(true)))
+                        if (GUILayout.Button(abilityNameCost, GUILayout.Height(40), GUILayout.ExpandWidth(true)))
                         {
                             Debug.Log($"{gameObject.name} used {abilityName}!");
                             _asc.AbilitySystem.TryActiveAbility(ability, _target.AbilitySystem);
