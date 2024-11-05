@@ -30,7 +30,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects
         [field: SerializeField, Tooltip("What attribute to affect and how it affected")]
         public EffectDetails EffectDetails { get; private set; } = new();
 
-        [field: SerializeField]
+        [field: SerializeReference, Tooltip("Stacking effect when this effect is applied on the target")]
         public StackingDetails StackingDetails { get; private set; }
 
         [field: SerializeReference, SubclassSelector, Tooltip("Addition effect when this effect is applied on the target")]
