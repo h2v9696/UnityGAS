@@ -1,6 +1,8 @@
 
 using H2V.GameplayAbilitySystem.AbilitySystem;
+using H2V.GameplayAbilitySystem.AbilitySystem.Components;
 using H2V.GameplayAbilitySystem.AbilitySystem.ScriptableObjects;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
@@ -8,7 +10,6 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
     [CreateAssetMenu(menuName = "H2V/Tests/Gameplay Ability System/Test Ability")]
     public class TestAbility : AbilitySO<TestAbilitySpec>
     {
-        public int TestParameter = 1;
         protected override TestAbilitySpec CreateAbility()
         {
             return new TestAbilitySpec(this);
@@ -17,7 +18,6 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
 
     public class TestAbilitySpec : AbilitySpec
     {
-        public int TestParameter => _ability.TestParameter;
         private TestAbility _ability;
 
         public TestAbilitySpec() { }
@@ -31,6 +31,21 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
         {
             Debug.Log($"TestAbilitySpec.OnAbilityActive()");
         }
+
+        public override void InitAbility(AbilitySystemBehaviour owner, AbilitySO ability)
+        {
+            base.InitAbility(owner, ability);
+            Assert.IsNotNull(_ability);
+            var context = _ability.GetContext<TestContext>();
+            Assert.IsNotNull(context);
+            Assert.AreEqual(1, context.TestParameter);
+            Debug.Log($"Ability {_ability}: context: {context} TestParameter: {context.TestParameter}");
+        }
+
+        protected override void OnAbilityEnded()
+        {
+            Debug.Log($"TestAbilitySpec.OnAbilityEnded()");
+        }
     }
 
     public class AlwaysFalse : IAbilityCondition
@@ -43,5 +58,12 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
         {
             return false;
         }
+    }
+
+    public class TestContext : IAbilityContext
+    {
+        public int TestParameter = 1;
+
+        public bool IsValid => true;
     }
 }

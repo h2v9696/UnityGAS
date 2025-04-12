@@ -13,6 +13,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
     /// When the effect is applied to the system, it will create a new <see cref="ActiveGameplayEffect"/> to store the computed modifier
     /// Every effect should create from <see cref="IGameplayEffectDef.CreateEffectSpec"/>
     /// </summary>
+    /// TODO: Why serialize this tho?
     [Serializable]
     public class GameplayEffectSpec
     {

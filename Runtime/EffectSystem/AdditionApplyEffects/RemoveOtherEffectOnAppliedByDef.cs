@@ -1,5 +1,6 @@
 using System;
 using H2V.GameplayAbilitySystem.Components;
+using H2V.GameplayAbilitySystem.EffectSystem.ScriptableObjects;
 using UnityEngine;
 
 namespace H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects
@@ -12,7 +13,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem.AdditionApplyEffects
         /// will be removed from the Target when this GameplayEffect is successfully applied.
         /// </summary>
         [field: SerializeReference]
-        public IGameplayEffectDef[] EffectDefs { get; private set; } = Array.Empty<IGameplayEffectDef>();
+        public GameplayEffectSO[] EffectDefs { get; private set; } = Array.Empty<GameplayEffectSO>();
 
         public void OnEffectSpecApplied(AbilitySystemComponent target)
         {

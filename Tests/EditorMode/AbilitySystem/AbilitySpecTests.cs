@@ -187,5 +187,13 @@ namespace H2V.GameplayAbilitySystem.Tests.AbilitySystem
             Assert.IsFalse(abilitySpec.IsActive);
             Assert.IsFalse(_abilitySystem.TagSystem.HasTag(_activationTag));
         }
+
+
+        [Test]
+        public void InitAbility_CorrectlyContext()
+        {
+            _testAbility.SetPrivateArrayProperty("Contexts", new IAbilityContext[] { new TestContext() }, true);
+            _abilitySystem.GiveAbility<TestAbilitySpec>(_testAbility);
+        }
     }
 }
