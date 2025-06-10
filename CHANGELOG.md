@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/h2v9696/UnityGAS/compare/v1.1.0...v1.1.1) (2025-06-10)
+
+
+### Bug Fixes
+
+* minor fix stack details and update package version ([4e2ae4f](https://github.com/h2v9696/UnityGAS/commit/4e2ae4fb708a8bfef003c0df6443a97faa5aea1b))
+
 ## [1.1.0](https://github.com/h2v9696/UnityGAS/compare/v1.0.3...v1.1.0) (2025-06-10)
 
 
