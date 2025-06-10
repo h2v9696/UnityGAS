@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/h2v9696/UnityGAS/compare/v1.0.3...v1.1.0) (2025-06-10)
+
+
+### Features
+
+* ability system child component and sample utilities ([bab2dfb](https://github.com/h2v9696/UnityGAS/commit/bab2dfbcffa638a9003c5619d56b7e8e8ee56d84))
+
+
+### Bug Fixes
+
+* add stacking behavior and subclass selection to serialized field ([d1ae9c0](https://github.com/h2v9696/UnityGAS/commit/d1ae9c090d3496ae6721d2b09a63bebf26e46a50))
+* minor and add test ([f5b91e8](https://github.com/h2v9696/UnityGAS/commit/f5b91e84c29d0b6ec3aee740425753dfd41e242f))
+* minor bugs and summary ([8bd26d3](https://github.com/h2v9696/UnityGAS/commit/8bd26d34328ba2e538f1153853184fc2fa900dfa))
+
 ## [1.0.3](https://github.com/h2v9696/UnityGAS/compare/v1.0.2...v1.0.3) (2024-09-23)
 
 
