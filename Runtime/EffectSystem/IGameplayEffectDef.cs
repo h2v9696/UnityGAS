@@ -43,6 +43,7 @@ namespace H2V.GameplayAbilitySystem.EffectSystem
             GameplayEffectContextHandle context);
     }
 
+    [System.Serializable]
     public struct StackingDetails
     {
         public EGameplayEffectStackingType StackingType;

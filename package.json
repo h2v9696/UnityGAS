@@ -1,12 +1,13 @@
 {
   "name": "h2v.gameplay-ability-system",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "displayName": "Gameplay Ability System",
   "description": "Gameplay Ability System from Unreal to Unity",
   "unity": "2022.3",
   "unityRelease": "0f1",
-  "dependencies": {
-    "com.mackysoft.serializereference-extensions": "1.1.9",
-    "com.h2v.extensions-core": "0.0.1"
+  "author": {
+    "name": "Viet",
+    "email": "h2v9696@gmail.com",
+    "url": "https://github.com/h2v9696"
   }
 }
